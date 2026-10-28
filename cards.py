@@ -2,17 +2,26 @@
 import random
 
 
-class card:
+class Card:
     faces = ["♦️", "❤️", "♠️", "♣️"]
-    numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+    numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+    def __init__(self, face, number):
+        self.face = face
+        self.number = number
 
 
-class deck:
+class Deck:
     def __init__(self):
-        faces = card.faces
-        numbers = card.numbers
-        deck = []
+        faces = Card.faces
+        numbers = Card.numbers
+        self.deck = []
         for i in faces:
             for j in numbers:
-                deck.append(f"{i} {j}")
-        random.shuffle(deck)
+                self.deck.append(Card(i, j))
+        random.shuffle(self.deck)
+        for card in self.deck:
+            print(card.face, card.number)
+
+
+Deck()
