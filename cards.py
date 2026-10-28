@@ -20,8 +20,6 @@ class Deck:
             for j in numbers:
                 self.deck.append(Card(i, j))
         random.shuffle(self.deck)
-        for card in self.deck:
-            print(card.face, card.number)
 
 
 Deck()
