@@ -3,20 +3,20 @@ import random
 
 
 class card:
-    face = ["♦️", "❤️", "♠️", "♣️"]
-    number = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-    cardFace = random.choice(face)
-    cardNumber = random.choice(number)
-
-    def __init__(self, name):
-        self.name = name
-        print(self.cardFace)
-        print(self.cardNumber)
+    faces = ["♦️", "❤️", "♠️", "♣️"]
+    numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
 
 
 class deck:
     def __init__(self):
-        pass
+        faces = card.faces
+        numbers = card.numbers
+        deck = []
+        for i in faces:
+            for j in numbers:
+                deck.append(f"{i} {j}")
+        random.shuffle(deck)
+        print(deck)
 
 
-card("card1")
+deck()
