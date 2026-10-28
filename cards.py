@@ -16,7 +16,3 @@ class deck:
             for j in numbers:
                 deck.append(f"{i} {j}")
         random.shuffle(deck)
-        print(deck)
-
-
-deck()
