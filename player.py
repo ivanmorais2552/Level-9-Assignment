@@ -8,6 +8,3 @@ class player():
 
     def play_card(self, deck):
         pass
-
-    def shuffle_cards(self, deck):
-        random.shuffle(deck)
