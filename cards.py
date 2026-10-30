@@ -18,8 +18,8 @@ class Deck:
     def __init__(self):
         faces = Card.faces
         numbers = Card.numbers
-        self.deck = []
+        self.cards = []
         for i in faces:
             for j in numbers:
-                self.deck.append(Card(i, j))
-        random.shuffle(self.deck)
+                self.cards.append(Card(i, j))
+        random.shuffle(self.cards)
