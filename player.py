@@ -12,20 +12,33 @@ class Player():
         return play_card
 
 
-def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2):
-    if player1_card > player2_card:
+def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties):
+
+    if player1_card.number > player2_card.number:
         print("Player 1 wins!")
-        player_deck1.deck.append(player2_card)
-        player_deck2.deck.remove(player_deck2.deck[0])
-        print(f"Player 1 has {len(player_deck1.deck)} cards. Player 2 has {len(player_deck2.deck)} cards.")
-        tie = False
-    elif player1_card < player2_card:
-        print("Player 2 wins!")
-        player_deck2.deck.append(player1_card)
+        player_deck1.deck.extend([player2_card, player1_card])
         player_deck1.deck.remove(player_deck1.deck[0])
+        player_deck2.deck.remove(player_deck2.deck[0])
+        if len(ties) > 0:
+            player_deck1.deck.extend(ties)
         print(f"Player 1 has {len(player_deck1.deck)} cards. Player 2 has {len(player_deck2.deck)} cards.")
+        ties.clear()
+        tie = False
+    elif player1_card.number < player2_card.number:
+        print("Player 2 wins!")
+        player_deck2.deck.extend([player1_card, player2_card])
+        player_deck1.deck.remove(player_deck1.deck[0])
+        player_deck2.deck.remove(player_deck2.deck[0])
+        if len(ties) > 0:
+            player_deck2.deck.extend(ties)
+        print(f"Player 1 has {len(player_deck1.deck)} cards. Player 2 has {len(player_deck2.deck)} cards.")
+        ties.clear()
         tie = False
     else:
+        print("Its a tie!")
+        ties.extend([player_deck1.deck[0], player_deck2.deck[0]])
+        player_deck1.deck.remove(player_deck1.deck[0])
+        player_deck2.deck.remove(player_deck2.deck[0])
         tie = True
     
     return tie
