@@ -10,19 +10,18 @@ player_deck2 = Deck()
 player1 = Player("player1", player_deck1)
 player2 = Player("player2", player_deck2)
 
-play = True
 
-while play:
-    tie = True
-    while tie:
-        ties = []
-        player1_card = player1.play_card()
-        player2_card = player2.play_card()
 
-        print(f"Player 1 played {player1_card.face} {player1_card.number}. Player played {player2_card.face} {player2_card.number}")
+tie = True
+ties = []
+while tie:
+    player1_card = player1.play_card()
+    player2_card = player2.play_card()
 
-        tie = evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties)
-    play
+    print(f"Player 1 played {player1_card.face} {player1_card.number}. Player played {player2_card.face} {player2_card.number}")
+
+    tie = evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties)
+
 
   
 #they play cards, if one is higher, that player gets both the cards
