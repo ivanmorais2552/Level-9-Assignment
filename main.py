@@ -6,14 +6,20 @@ print("Welcome to War")
 player_deck1 = Deck()
 player_deck2 = Deck()
 
+
 player1 = Player("player1", player_deck1)
 player2 = Player("player2", player_deck2)
 
-player1_card = player1.play_card()
-player2_card = player2.play_card()
+tie = True
+while tie:
 
-print(player1_card.face, player1_card.number)
-print(player2_card.face, player2_card.number)
+    player1_card = player1.play_card()
+    player2_card = player2.play_card()
+
+    print(f"Player 1 played {player1_card.face} {player1_card.number}. Player played {player2_card.face} {player2_card.number}")
+
+    tie = evaluate_winner(player1_card.number, player2_card.number, player_deck1, player_deck2)
+
   
 #they play cards, if one is higher, that player gets both the cards
 while True:
