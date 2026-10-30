@@ -10,6 +10,9 @@ class Card:
         self.face = face
         self.number = number
 
+    def __repr__(self):
+        return f"{self.face} {self.number}"
+
 
 class Deck:
     def __init__(self):
@@ -20,6 +23,3 @@ class Deck:
             for j in numbers:
                 self.deck.append(Card(i, j))
         random.shuffle(self.deck)
-
-
-Deck()
