@@ -8,8 +8,9 @@ class Player():
         self.deck = deck
 
     def play_card(self):
-        play_card = self.deck.deck[0]
-        return play_card
+        played_card = self.deck.deck[0]
+        return played_card
+
 
 
 def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties):
