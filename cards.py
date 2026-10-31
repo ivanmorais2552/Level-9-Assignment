@@ -22,4 +22,4 @@ class Deck:
         for i in faces:
             for j in numbers:
                 self.cards.append(Card(i, j))
-        random.shuffle(self.cards)
+        self.cards = random.shuffle(self.cards)
