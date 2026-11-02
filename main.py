@@ -8,18 +8,12 @@ player_deck2 = Deck()
 player1 = Player("player1", player_deck1)
 player2 = Player("player2", player_deck2)
 
-
-
-tie = True
 player_won = False
-ties = []
 while player_won == False:
     player1_card = player1.play_card()
     player2_card = player2.play_card()
-
     print(f"Player 1 played {player1_card.face} {player1_card.number}. Player 2 played {player2_card.face} {player2_card.number}")
-
-    tie, ties = evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties)
+    evaluate_winner(player1_card, player2_card, player_deck1, player_deck2)
     player_won = evaluate_game(player1, player2)
 
 
