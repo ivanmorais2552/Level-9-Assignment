@@ -8,7 +8,7 @@ class Player():
         self.deck = deck
 
     def play_card(self):
-        played_card = self.deck.deck[0]
+        played_card = self.deck.cards[0]
         return played_card
 
 
@@ -17,27 +17,27 @@ def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties
     tie = False
     if player1_card.number > player2_card.number:
         print("Player 1 wins!")
-        player_deck1.deck.extend([player2_card, player1_card])
-        player_deck1.deck.remove(player_deck1.deck[0])
-        player_deck2.deck.remove(player_deck2.deck[0])
+        player_deck1.cards.extend([player2_card, player1_card])
+        player_deck1.cards.remove(player_deck1.cards[0])
+        player_deck2.cards.remove(player_deck2.cards[0])
         if len(ties) > 0:
-            player_deck1.deck.extend(ties)
-        print(f"Player 1 has {len(player_deck1.deck)} cards. Player 2 has {len(player_deck2.deck)} cards.")
+            player_deck1.cards.extend(ties)
+        print(f"Player 1 has {len(player_deck1.cards)} cards. Player 2 has {len(player_deck2.cards)} cards.")
         ties.clear()
     elif player1_card.number < player2_card.number:
         print("Player 2 wins!")
-        player_deck2.deck.extend([player1_card, player2_card])
-        player_deck1.deck.remove(player_deck1.deck[0])
-        player_deck2.deck.remove(player_deck2.deck[0])
+        player_deck2.cards.extend([player1_card, player2_card])
+        player_deck1.cards.remove(player_deck1.cards[0])
+        player_deck2.cards.remove(player_deck2.cards[0])
         if len(ties) > 0:
-            player_deck2.deck.extend(ties)
-        print(f"Player 1 has {len(player_deck1.deck)} cards. Player 2 has {len(player_deck2.deck)} cards.")
+            player_deck2.cards.extend(ties)
+        print(f"Player 1 has {len(player_deck1.cards)} cards. Player 2 has {len(player_deck2.cards)} cards.")
         ties.clear()
     else:
         print("Its a tie! Begin the war!")
-        ties.extend([player_deck1.deck[0], player_deck2.deck[0]])
-        player_deck1.deck.remove(player_deck1.deck[0])
-        player_deck2.deck.remove(player_deck2.deck[0])
+        ties.extend([player_deck1.cards[0], player_deck2.cards[0]])
+        player_deck1.cards.remove(player_deck1.cards[0])
+        player_deck2.cards.remove(player_deck2.cards[0])
         tie = True
     
     return tie
