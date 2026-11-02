@@ -25,8 +25,13 @@ def war(player1_card, player2_card, player_deck1, player_deck2, ties):
         player_deck1.extend(ties)
         player_deck1.cards.extend([player2_card, player1_card])
         ties.clear()
-    elif player_1_new_card.number > player_2_new_card.number:
-        pass
+    elif player_1_new_card.number < player_2_new_card.number:
+        print("Player 2 won the war")
+        player_deck1.extend(ties)
+        player_deck1.cards.extend([player2_card, player1_card])
+        ties.clear()
+    else:
+        war(player1_card, player2_card, player_deck1, player_deck2, ties)
     return player1_card, player2_card, player_deck1, player_deck2, ties
         
 def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties):
@@ -54,9 +59,7 @@ def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2, ties
         ties.clear()
     else:
         print("Its a tie! Begin the war!")
-        ties.extend([player_deck1.cards[0], player_deck2.cards[0]])
-        player_deck1.cards.remove(player_deck1.cards[0])
-        player_deck2.cards.remove(player_deck2.cards[0])
+        
         tie = True
     
     return tie, ties
