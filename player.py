@@ -13,15 +13,16 @@ class Player():
 
 def evaluate_game(player1_deck, player2_deck):
     has_won = False
-    if len(player1_deck.cards) == 104:
+    if len(player1_deck.cards) == 104 or len(player2_deck.cards) == 0:
         has_won = True
         print("Player 1 won the game!")
-    elif len(player2_deck.cards) == 104:
+    elif len(player2_deck.cards) == 104 or len(player1_deck.cards) == 0:
         has_won = True
         print("Player 2 won the game")
     return has_won
 
 def war(player_deck1, player_deck2, ties):
+    player_won = False
     print("Its a tie! Begin the war!")
     print("Each player puts 3 cards facedown")
     if len(player_deck1.cards) < 4 and len(player_deck1.cards) >= 1:
@@ -50,8 +51,13 @@ def war(player_deck1, player_deck2, ties):
         player_deck1.cards.extend([player_2_new_card, player_1_new_card])
         if len(player_deck1.cards) > 0:
             player_deck1.cards.remove(player_deck1.cards[0])
+        else:
+            return player_deck1, player_deck2, ties, True
         if len(player_deck2.cards) > 0:
             player_deck2.cards.remove(player_deck2.cards[0])
+        else:
+            return player_deck1, player_deck2, ties, True
+        player_won = True
     elif player_1_new_card.number < player_2_new_card.number:
         print(f"Player 1 played {player_1_new_card}. Player 2 played {player_2_new_card}. Player 2 won the war!")
         player_deck2.cards.extend(ties)
@@ -60,10 +66,11 @@ def war(player_deck1, player_deck2, ties):
             player_deck1.cards.remove(player_deck1.cards[0])
         if len(player_deck2.cards) > 0:
             player_deck2.cards.remove(player_deck2.cards[0])
+        player_won = True
     elif player_1_new_card.number == player_2_new_card.number:
-        player_deck1, player_deck2, ties = war(player_deck1, player_deck2, ties)
+        player_deck1, player_deck2, ties, player_won = war(player_deck1, player_deck2, ties)
     print(f"Player 1 has {len(player_deck1.cards)} cards. Player 2 has {len(player_deck2.cards)} cards.")
-    return player_deck1, player_deck2, ties
+    return player_deck1, player_deck2, ties, player_won
     
     """
     backuplist1 = []
@@ -134,5 +141,6 @@ def evaluate_winner(player1_card, player2_card, player_deck1, player_deck2):
         print(f"Player 1 has {len(player_deck1.cards)} cards. Player 2 has {len(player_deck2.cards)} cards.")
         player_won = False
     else:
-        player_won = war(player_deck1, player_deck2, [])
+        player_deck1, player_deck2, ties, player_won = war(player_deck1, player_deck2, [])
+
     return evaluate_game(player_deck1, player_deck2)
