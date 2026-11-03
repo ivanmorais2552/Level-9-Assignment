@@ -14,6 +14,7 @@ while True:
         player2_card = player2.play_card()
         print(f"Player 1 played {player1_card.face} {player1_card.number}. Player 2 played {player2_card.face} {player2_card.number}")
         player_won = evaluate_winner(player1_card, player2_card, player_deck1, player_deck2)
+        input("Press Enter for the next card")
     next_round = input("Start another game (yes/no): ").strip().lower()
     if next_round == "no":
         break
