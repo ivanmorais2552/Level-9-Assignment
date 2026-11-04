@@ -26,3 +26,5 @@ while True:
         break
     elif next_round == "yes":
         player_won = False
+    else:
+        print("Please enter yes or no")
