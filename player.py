@@ -32,7 +32,7 @@ def war(player_deck1, player_deck2, ties):
     print("Its a tie! Begin the war!")
     print("Each player puts 3 cards facedown")
     # first check player 1 to see if they have enough cards
-    if len(player_deck1.cards) < 4 and len(player_deck1.cards) >= 1:
+    if len(player_deck1.cards) < 4 and len(player_deck1.cards) >= 2:
         player_1_new_card = player_deck1.cards[0]
         player_deck1.cards.remove(player_deck1.cards[0])
         ties.extend(player_deck1.cards)
@@ -43,10 +43,10 @@ def war(player_deck1, player_deck2, ties):
             player_deck1.cards.remove(player_deck1.cards[0])
         player_1_new_card = player_deck1.cards[0]
     # This is so if there's not enough cards it won't break the game
-    elif len(player_deck1.cards) == 0:
+    elif len(player_deck1.cards) <= 1:
         return player_deck1, player_deck2, ties, True
     # next check player 2 to see if they have enough cards
-    if len(player_deck2.cards) < 4 and len(player_deck2.cards) >= 1:
+    if len(player_deck2.cards) < 4 and len(player_deck2.cards) >= 2:
         player_2_new_card = player_deck2.cards[0]
         player_deck2.cards.remove(player_deck2.cards[0])
         ties.extend(player_deck2.cards)
@@ -57,7 +57,7 @@ def war(player_deck1, player_deck2, ties):
             player_deck2.cards.remove(player_deck2.cards[0])
         player_2_new_card = player_deck2.cards[0]
     # This is so if there's not enough cards it won't break the game
-    elif len(player_deck2.cards) == 0:
+    elif len(player_deck2.cards) <= 1:
         return player_deck1, player_deck2, ties, True
     # This is the main comparison block. Cards will have been added to ties already
     if player_1_new_card.number > player_2_new_card.number:  # compares the cards player1 to player2
